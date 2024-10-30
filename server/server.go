@@ -3,10 +3,12 @@ package main
 import (
 	"context"
 	"log"
+	"net"
 	"sync"
 
 	pb "github.com/michaelkleyn/grpc-job-queue/proto"
 	// pb "../proto/"
+	"google.golang.org/grpc"
 )
 
 type jobStatus struct {
@@ -62,4 +64,19 @@ func (s *server) GetJobStatus(ctx context.Context, req *pb.JobStatusRequest) (*p
 		JobId:  req.JobId,
 		Status: status.status,
 	}, nil
+}
+
+func main() {
+	listener, err := net.Listen("tcp", ":50052")
+	if err != nil {
+		log.Fatalf("Failed to listen on port 50052: %v", err)
+	}
+
+	grpcServer := grpc.NewServer()
+	pb.RegisterJobQueueServer(grpcServer, newServer())
+
+	log.Println("Server is running on port 50052...")
+	if err := grpcServer.Serve(listener); err != nil {
+		log.Fatalf("Failed to serve gRPC server: %v", err)
+	}
 }
