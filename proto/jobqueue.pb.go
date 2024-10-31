@@ -7,10 +7,11 @@
 package proto
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -270,13 +271,15 @@ func file_proto_jobqueue_proto_rawDescGZIP() []byte {
 	return file_proto_jobqueue_proto_rawDescData
 }
 
-var file_proto_jobqueue_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_proto_jobqueue_proto_goTypes = []any{
-	(*JobRequest)(nil),        // 0: proto.JobRequest
-	(*JobResponse)(nil),       // 1: proto.JobResponse
-	(*JobStatusRequest)(nil),  // 2: proto.JobStatusRequest
-	(*JobStatusResponse)(nil), // 3: proto.JobStatusResponse
-}
+var (
+	file_proto_jobqueue_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+	file_proto_jobqueue_proto_goTypes  = []any{
+		(*JobRequest)(nil),        // 0: proto.JobRequest
+		(*JobResponse)(nil),       // 1: proto.JobResponse
+		(*JobStatusRequest)(nil),  // 2: proto.JobStatusRequest
+		(*JobStatusResponse)(nil), // 3: proto.JobStatusResponse
+	}
+)
 var file_proto_jobqueue_proto_depIdxs = []int32{
 	0, // 0: proto.JobQueue.SubmitJob:input_type -> proto.JobRequest
 	2, // 1: proto.JobQueue.GetJobStatus:input_type -> proto.JobStatusRequest
